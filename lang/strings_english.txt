@@ -51,6 +51,11 @@ $s_plugin_EmailReporting_mail_debug_directory = 'Save email contents to this dir
 $s_plugin_EmailReporting_mail_debug_show_memory_usage = 'Show the memory usage at various stages of the email processing process';
 $s_plugin_EmailReporting_mail_delete = 'Delete processed email from the mailbox';
 $s_plugin_EmailReporting_mail_disposable_email_checker = 'Enable disposable email address checker of MantisBT';
+$s_plugin_EmailReporting_mail_filtering = 'Email filtering';
+$s_plugin_EmailReporting_mail_filter_from_white_black_list = 'Filter sender using';
+$s_plugin_EmailReporting_mail_filter_from = 'Sender matching regexp';
+$s_plugin_EmailReporting_mail_filter_subject_white_black_list = 'Filter subject using';
+$s_plugin_EmailReporting_mail_filter_subject = 'Subject matching regexp';
 $s_plugin_EmailReporting_mail_email_receive_own = 'Should users receive emails for their own actions (N/A if email_receive_own = ON)';
 $s_plugin_EmailReporting_mail_fallback_mail_reporter = 'Enable fallback to default reporter';
 $s_plugin_EmailReporting_mail_max_email_body = 'Maximum size of the description or note being added to the issue';

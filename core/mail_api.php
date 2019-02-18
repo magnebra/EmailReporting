@@ -595,6 +595,12 @@ class ERP_mailbox_api
 
 		unset( $t_msg );
 
+		$t_filter_accept_email = $this->filter_accept_email( $t_email );
+		if ( !$t_filter_accept_email )
+		{
+			return( FALSE );
+		}
+
 		$this->show_memory_usage( 'Parsed single email' );
 
 		$this->save_message_to_file( 'parsed_msg', $t_email );
@@ -616,6 +622,49 @@ class ERP_mailbox_api
 		$this->show_memory_usage( 'Finished process single email' );
 
 		return( TRUE );
+	}
+
+	# --------------------
+	# Checks if this email is accepted by the filter
+	private function filter_accept_email( $p_email )
+	{
+		$t_filter_from = plugin_config_get( 'mail_filter_from_white_black_list', 'disabled' );
+		if ( $t_filter_from != 'disabled' )
+		{
+			$t_from_regexp = plugin_config_get( 'mail_filter_from' );
+			echo 'Email : ' . $p_email[ 'From_parsed' ][ 'email' ] . "\n";
+			echo 'From : ' . $p_email[ 'From_parsed' ][ 'From' ] . "\n";
+			$t_email_matches = preg_match( $t_from_regexp, $p_email[ 'From_parsed' ][ 'email' ] );
+			$t_from_matches = preg_match( $t_from_regexp, $p_email[ 'From_parsed' ][ 'From' ] );
+			echo 'Email matches: ' . $t_email_matches . ' , from matches: ' . $t_from_matches . "\n";
+			if ( $t_filter_from == 'whitelist' && !($t_email_matches || $t_from_matches) )
+			{
+				return FALSE;
+			}
+			else if ( $t_filter_from == 'blacklist' && ($t_email_matches || $t_from_matches) )
+			{
+				return FALSE;
+			}
+		}
+
+		$t_filter_subject = plugin_config_get( 'mail_filter_subject_white_black_list', 'disabled' );
+		if ( $t_filter_subject != 'disabled' )
+		{
+			$t_subject_regexp = plugin_config_get( 'mail_filter_subject' );
+			echo 'Subject : ' . $p_email[ 'Subject' ] . "\n";
+			$t_subject_matches = preg_match( $t_subject_regexp, $p_email[ 'Subject' ] );
+			echo 'Subject matches: ' . $t_subject_matches . "\n";
+			if ( $t_filter_subject == 'whitelist' && !$t_subject_matches )
+			{
+				return FALSE;
+			}
+			else if ( $t_filter_subject == 'blacklist' && $t_subject_matches )
+			{
+				return FALSE;
+			}
+		}
+
+		return TRUE;
 	}
 
 	# --------------------

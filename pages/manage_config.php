@@ -171,6 +171,13 @@ ERP_output_config_option( 'mail_remove_mantis_email', 'boolean' );
 ERP_output_config_option( 'mail_removed_reply_text', 'string' );
 ERP_output_table_close();
 
+ERP_output_table_open( 'mail_filtering' );
+ERP_output_config_option( 'mail_filter_from_white_black_list', 'dropdown', NULL, 'print_descriptions_option_list', array( 'disabled', 'whitelist', 'blacklist' ) );
+ERP_output_config_option( 'mail_filter_from', 'string_multiline' );
+ERP_output_config_option( 'mail_filter_subject_white_black_list', 'dropdown', NULL, 'print_descriptions_option_list', array( 'disabled', 'whitelist', 'blacklist' ) );
+ERP_output_config_option( 'mail_filter_subject', 'string_multiline' );
+ERP_output_table_close();
+
 ERP_output_table_open( 'debug_options' );
 ERP_output_config_option( 'mail_debug', 'boolean' );
 ERP_output_config_option( 'mail_debug_directory', 'directory_string' );

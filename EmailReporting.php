@@ -179,6 +179,20 @@ class EmailReportingPlugin extends MantisPlugin
 
 			// Whether to identify notes using Message-ID in the mail header
 			'mail_use_message_id'			=> ON,
+
+			// Filter the from field using a white or black list or disabled (empty)
+			'mail_filter_from_white_black_list'	=> 'disabled',
+
+			// Filter for the sender "from" field. Used as a white or black list depending on the
+			// mail_filter_from_white_black_list option
+			'mail_filter_from'			=> '',
+
+			// Filter the subject field using a white or black list or disabled (empty)
+			'mail_filter_subject_white_black_list'	=> 'disabled',
+
+			// Filter for the sender "subject" field. Used as a white or black list depending on the
+			// mail_filter_subject_white_black_list option
+			'mail_filter_subject'			=> '',
 		);
 	}
 
