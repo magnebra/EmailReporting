@@ -266,6 +266,9 @@ class EmailReportingPlugin extends MantisPlugin
 
 			// Keep in mind that this event is called AFTER its MantisBT core counterpart
 			'EVENT_ERP_REPORT_BUG_DATA' => EVENT_TYPE_CHAIN,
+
+			// Allow plugins to provide a custom value for a custom field
+			'EVENT_ERP_REPORT_CUSTOM_FIELD' => EVENT_TYPE_CHAIN,
 		);
 	}
 

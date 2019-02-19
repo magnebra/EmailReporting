@@ -1032,6 +1032,7 @@ class ERP_mailbox_api
 				$t_def = custom_field_get_definition( $t_id );
 				$t_default_value = custom_field_default_to_value( $t_def['default_value'], $t_def['type'] );
 				$t_value = $t_default_value; //gpc_get_custom_field( 'custom_field_' . $t_id, $t_def['type'], $t_default_value );
+				$t_value = event_signal( 'EVENT_ERP_REPORT_CUSTOM_FIELD', $t_value, $t_bug_data, $p_email, $t_def );
 				if ( !custom_field_set_value( $t_id, $t_bug_id, $t_value, /* log insert */ false ) )
 				{
 //					error_parameters( lang_get_defaulted( custom_field_get_field( $t_id, 'name' ) ) );
